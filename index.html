@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    
+    <h3>Generador de mezlcas</h3>
+    <p id ="texto"></p>
+
+    <button onclick="generarMezcla()" >Generar mezcla</button>
+
+    <script>
+
+        var r = ["R", "R'", "R2"];
+        var l = ["L", "L'", "L2"];
+        var u = ["U", "U'", "U2"];
+        var d = ["D", "D'", "D2"];
+        var f = ["F", "F'", "F2"];
+        var b = ["B", "B'", "B2"];
+
+        var grupos = [r, l,u, d, f, b];
+
+        var scrambleSize = 20;
+        var scramble = "";
+
+        var grupoAnterior = 0;
+
+    function generateRandomInt(min,max){
+         return Math.floor((Math.random() * (max-min)) +min);
+    }
+
+    function generarMezcla(){       
+
+    var contador = 0;         
+
+    while (contador < scrambleSize) {
+
+    var grupo = generateRandomInt(0, 5);    
+    var position = generateRandomInt(0,2);
+    var movimiento = grupos[grupo][position];
+
+        if (contador>0 && grupo==grupoAnterior) {
+            
+            contador--;
+            grupoAnterior = grupo;
+        }
+
+        else {
+            scramble = scramble + " " + movimiento;
+            grupoAnterior = grupo;
+        }
+
+        contador ++;  
+    }
+
+
+    document.getElementById('texto').innerHTML = scramble;
+    scramble = "";
+     }
+
+
+    </script>
+
+
+
+    
+</body>
+</html>
